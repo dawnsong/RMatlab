@@ -26,7 +26,7 @@ R_SO_MEX_CFLAGS=LDFLAGS='-pthread -shared  -Wl,--no-undefined'
 MEX_ARGS= $(R_MEX_CFLAGS) 
 
 # the mex compiler to create the loadable objects.
-MEX=/software/matlab/R2013a/bin/mex CC=gcc -ldl CFLAGS='-fPIC -std=c99' 
+MEX=/usr/local/bin/mex CC=gcc -ldl CFLAGS='-fPIC -std=c99' 
 
 MEX_LD_EXTENSION=mexa64
 
