@@ -1,18 +1,18 @@
 
 if !(${?MATLABPATH}) then
-   setenv MATLABPATH /home/duncan/Rpackages/RMatlab/mex
+   setenv MATLABPATH /projects/b1015/xiaowei/bak/R/libs/RMatlab/mex
 else
-   setenv MATLABPATH /home/duncan/Rpackages/RMatlab/mex:$MATLABPATH
+   setenv MATLABPATH /projects/b1015/xiaowei/bak/R/libs/RMatlab/mex:$MATLABPATH
 endif
 
 
-setenv R_HOME /usr/local/lib/R
+setenv R_HOME /home/xst833/R/lib64/R
 
-if ("/usr/local/lib/R/lib" != "") then
+if ("/home/xst833/R/lib64/R/lib/" != "") then
  if !(${?LD_LIBRARY_PATH}) then
-     setenv LD_LIBRARY_PATH /usr/local/lib/R/lib
+     setenv LD_LIBRARY_PATH /home/xst833/R/lib64/R/lib/
  else
-      setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:/usr/local/lib/R/lib
+      setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:/home/xst833/R/lib64/R/lib/
  endif
 endif
 

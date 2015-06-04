@@ -4,7 +4,7 @@ ifndef R_HOME
 endif
 
 # Where to find R header files
-R_MEX_CFLAGS=-I$(R_HOME)/include
+R_MEX_CFLAGS=-I${R_INCLUDE_DIR}
 # Where to find R shared library.
 R_MEX_LIBS=-L$(R_HOME)/lib -lR 
 
@@ -23,10 +23,10 @@ R_SO_MEX_CFLAGS=LDFLAGS='@R_SO_MEX_LDFLAGS@'
 
 
 # Arguments for the mex compiler
-MEX_ARGS= -argcheck $(R_MEX_CFLAGS) @DEFINES@
+MEX_ARGS= $(R_MEX_CFLAGS) @DEFINES@
 
 # the mex compiler to create the loadable objects.
-MEX=@MEX@
+MEX=@MEX@ CC=@CC@ -ldl CFLAGS='-fPIC -std=c99' 
 
 MEX_LD_EXTENSION=@MEX_LD_EXTENSION@
 

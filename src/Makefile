@@ -4,7 +4,7 @@ ifndef R_HOME
 endif
 
 # Where to find R header files
-R_MEX_CFLAGS=-I$(R_HOME)/include
+R_MEX_CFLAGS=-I${R_INCLUDE_DIR}
 # Where to find R shared library.
 R_MEX_LIBS=-L$(R_HOME)/lib -lR 
 
@@ -19,16 +19,16 @@ R_MEX_LIBS=-L$(R_HOME)/lib -lR
 #XXX For Solaris, this should be -G -mt
 # or more accurately, the value of LDFLAGS
 # without the text  -[^ ]*.map
-R_SO_MEX_CFLAGS=LDFLAGS='-pthread -shared -m32 '
+R_SO_MEX_CFLAGS=LDFLAGS='-pthread -shared  -Wl,--no-undefined'
 
 
 # Arguments for the mex compiler
-MEX_ARGS= -argcheck $(R_MEX_CFLAGS) 
+MEX_ARGS= $(R_MEX_CFLAGS) 
 
 # the mex compiler to create the loadable objects.
-MEX=/usr/local/bin/mex
+MEX=/software/matlab/R2013a/bin/mex CC=gcc -ldl CFLAGS='-fPIC -std=c99' 
 
-MEX_LD_EXTENSION=mexglx
+MEX_LD_EXTENSION=mexa64
 
 
 ##################################################################################

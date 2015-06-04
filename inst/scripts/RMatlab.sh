@@ -1,20 +1,20 @@
 if test -z "$MATLABPATH" ; then
-   MATLABPATH=/home/duncan/Rpackages/RMatlab/mex
+   MATLABPATH=/projects/b1015/xiaowei/bak/R/libs/RMatlab/mex
 else
-   MATLABPATH=/home/duncan/Rpackages/RMatlab/mex:$MATLAB_PATH
+   MATLABPATH=/projects/b1015/xiaowei/bak/R/libs/RMatlab/mex:$MATLAB_PATH
 fi
 
 export MATLABPATH
 
 
-R_HOME=/usr/local/lib/R
+R_HOME=/home/xst833/R/lib64/R
 export R_HOME
 
-if test -n "/usr/local/lib/R/lib" ; then
+if test -n "/home/xst833/R/lib64/R/lib/" ; then
  if test -z "$LD_LIBRARY_PATH" ; then
-     LD_LIBRARY_PATH=/usr/local/lib/R/lib
+     LD_LIBRARY_PATH=/home/xst833/R/lib64/R/lib/
  else
-     LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib/R/lib
+     LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/xst833/R/lib64/R/lib/
  fi
 fi
 

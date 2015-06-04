@@ -1,5 +1,5 @@
 Package: RMatlab
-Version: 0.2-6
+Version: 0.2-5
 Title: R-Matlab interface 
 Author: Duncan Temple Lang <duncan@wald.ucdavis.edu>
 SystemRequirements: Matlab 7.0 or higher.
@@ -27,10 +27,10 @@ Limitations:
   all the basic types such as vectors, matrices, arrays, structures,
   cells, lists, named lists for the basic types: numeric, character,
   logical, integer.  We do not yet handle the different forms of
-  integers in Matlab (e.g. uint, uint8, uint64, etc.)
+  integers in Matlab (e.g. uint, uint8, uint64, etc.
 Note:  One needs to set the necessary environment variables to access 
   Matlab from R and R from Matlab to find the relevant shared libraries/DLLs.
   See the shell scripts in the scripts/ directory of the installed R package.
   You can find this with the command
       echo ".find.package('RMatlab')"  | R --no-save --silent
-
+Packaged: Sun Feb  4 17:16:03 2007; duncan

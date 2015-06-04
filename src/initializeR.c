@@ -10,7 +10,8 @@
 #include <Rembedded.h> /* for Rf_initEmbeddedR() and Rf_endEmbeddedR() */
 #endif
 #if R_VERSION >= R_Version(2, 3, 1)
-#define CSTACK_DEFNS /* for R_CStackLimit */
+#define R_INTERFACE_PTRS 1
+#define CSTACK_DEFNS 1
 #include <Rinterface.h> /* for R_SignalHandlers */
 #endif
 
@@ -32,7 +33,7 @@ static void RMatlab_closeRSession() {
 static char **
 copyCommandLineArguments(const mxArray *mxEls, int *nargs)
 {
-    char **args;
+    char **args, *str;
     int len, i;
 
     *nargs = mxGetNumberOfElements(mxEls);
@@ -85,19 +86,18 @@ mexFunction(int nlhs, mxArray *plhs[],
        works. */
     R_SignalHandlers = 0;
 #endif
-
 #if 0
-    if (!(embeddedR_Is_Running = Rf_initEmbeddedR(nargs, R_cmdArgs)))
-    	mexErrMsgTxt("Error initializing the R embedded environment");
+   if (!(embeddedR_Is_Running = Rf_initEmbeddedR(nargs, R_cmdArgs)))
+       mexErrMsgTxt("Error initializing the R embedded environment");
 #else
-     /* We need to unroll Rf_initEmbeddedR(nargs, R_cmdArgs) to disable the
-        stack-checking between Rf_initialize_R() and setup_Rmainloop() */
-     Rf_initialize_R(nargs, R_cmdArgs);
-     R_Interactive = TRUE;  /* Rf_initialize_R set this based on isatty */
-     R_CStackLimit = (uintptr_t)-1;
-     setup_Rmainloop();
- 
-     embeddedR_Is_Running = 1;
+    /* We need to unroll Rf_initEmbeddedR(nargs, R_cmdArgs) to disable the
+     *     stack-checking between Rf_initialize_R() and setup_Rmainloop() */
+    Rf_initialize_R(nargs, R_cmdArgs);
+    R_Interactive = TRUE;  /* Rf_initialize_R set this based on isatty */
+    R_CStackLimit = (uintptr_t)-1;
+    setup_Rmainloop();
+
+    embeddedR_Is_Running = 1;
 #endif
 
     if (R_cmdArgs)
